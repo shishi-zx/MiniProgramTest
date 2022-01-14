@@ -38,7 +38,7 @@ const Anime = dbInstance.define("Anime",{
     cover_img: {
         name: 'cover_img',
         description: '封面图url',
-        defaultValue: 'minitest-1309252537.cos.ap-beijing.myqcloud.com/default.png',
+        defaultValue: 'https://minitest-1309252537.cos.ap-beijing.myqcloud.com/default.jpg',
         allowNull: true,
         type: DataTypes.STRING
     },

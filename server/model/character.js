@@ -45,12 +45,13 @@ const Character = dbInstance.define("Character",{
         name: 'create_time',
         allowNull: true,
         description: '上传时间',
-        type: DataTypes.DATE
+        type: DataTypes.DATE,
+        defaultValue: Date.now()
     },
     cover_img: {
         name: 'cover_img',
         description: '人物头像',
-        defaultValue: 'minitest-1309252537.cos.ap-beijing.myqcloud.com/avatar-default.png',
+        defaultValue: 'https://minitest-1309252537.cos.ap-beijing.myqcloud.com/avatar-default.png',
         allowNull: true,
         type: DataTypes.STRING
     }},
