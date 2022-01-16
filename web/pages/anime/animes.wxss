@@ -1,0 +1,73 @@
+/* pages/anime/animes.wxss */
+/* pages/animes/animes.wxss */
+.animeContainer{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;   
+}
+.animeHeader{
+    position: fixed;
+    right: 10px;
+    top: 10px;
+}
+.animeHeader>van-icon{
+    color: rgb(40, 59, 100);
+    text-shadow:0 0 3px rgb(82, 82, 235);
+}
+.animeHeader .menu{
+    width: 50vw;
+    background-color: rgb(211, 199, 151, .9);
+    margin-top: 50vh;
+    margin-left: 50vw;
+    transform: translateY(-50%) translateX(-50%);
+
+    border-radius: 20%;
+    border: rgb(202, 236, 236) 1px solid;
+    box-shadow: 0 0 1000px 2px rgb(219, 238, 238);
+}
+.animeHeader .menu > view{
+    text-align: center;
+    height:50px;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 50px;
+    border-bottom: 1px solid black;
+}
+.animeHeader .menu > view:last-child{
+    border-bottom: none;
+}
+.animeCenter
+.listItem{
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    background-color: rgb(186, 124, 245);
+    border-bottom: 1px solid rgb(90, 87, 87);  
+}
+.listItemLeft{
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 20px;  
+}
+.listItemLeft image{
+    width: 100px;
+    height: 100px;
+    background-color: brown;
+}
+.listItemright{
+    flex: 1;
+    padding: 10px;
+}
+.ItemName{
+    font-size: 20px;
+    font-weight: bolder;
+}
+
+.ItemBrief{
+    font-size: 14px;
+    padding: 4px;
+}

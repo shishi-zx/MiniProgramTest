@@ -1,0 +1,28 @@
+<!--pages/animes/animes.wxml-->
+<view class="animeContainer">
+    <view class="animeHeader">
+        <van-icon name="setting" size="40px" bind:click="switchShow" />
+        <van-overlay show="{{ show }}" bind:click="switchShow" duration="0">
+            <view class="wrapper">
+                <view class="menu">
+                    <view bindtap="addAnime">添加动漫</view>
+                    <view bindtap="switchOrderToLow">按名字降序排序</view>
+                    <view bindtap="switchOrderToHigh">按名字升序排序</view>
+                </view>
+            </view>
+        </van-overlay>
+    </view>
+    <view class="animeCenter">
+        <view class="listItem" wx:for="{{data}}" wx:for-itme="item" wx:key="id" bindtap="open">
+            <view class="listItemLeft" data-id="{{item.id}}">
+                <image src="{{item.cover_img}}" data-id="{{item.id}}" />
+            </view>
+            <view class="listItemright" data-id="{{item.id}}">
+                <view class="ItemName" data-id="{{item.id}}">{{item.name}}</view>
+                <view class="ItemBrief" data-id="{{item.id}}">{{item.brief}}</view>
+            </view>
+        </view>
+        <view wx:if="{{data.length==0}}">服务器未打开或者请检查网络链接</view>
+        <van-toast id="van-toast" />
+    </view>
+</view>

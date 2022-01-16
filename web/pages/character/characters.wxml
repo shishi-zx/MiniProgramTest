@@ -1,0 +1,59 @@
+<!--pages/character/characters.wxml-->
+<view class="character-container">
+    <view class="character-head">
+        <van-icon name="edit" />
+        <view class="anime-cover">
+            <image src="{{Anime.cover_img}}"></image>
+        </view>
+        <view class="anime-name">{{Anime.name}}</view>
+    </view>
+    <view class="character-center">
+        <wxs module="m1">
+            function format(ts) {
+                var d = getDate(ts)
+                return [d.getFullYear(), d.getMonth() + 1, d.getDate()].join('-')
+            }
+            module.exports.format = format
+        </wxs>
+        <view class="show-time">上映时间：{{m1.format(Anime.show_time)}}</view>
+        <view class="anime-brief">草帽一伙</view>
+        <view class="anime-desc">草帽一伙的探险故事</view>
+    </view>
+    <view class="character-foot">
+        <view class="title">角色列表</view>
+        <view class="character-list">
+            <view class="character-item" wx:for="{{data}}" wx:key="*this">
+                <view class="cover-img">
+                    <image src="{{item.cover_img}}" data-id="{{index}}" bindtap="onClickShowCharacter"></image>
+                </view>
+                <view class="character-name">{{item.name}}</view>
+                <view class="character-brief">{{item.brief}}</view>
+            </view>
+            <view wx:if="{{pageNum<totalPages}}" class="character-item">
+                <van-icon name="add-o" />
+                <view>加载更多</view>
+            </view>
+        </view>
+    </view>
+    <!-- 展开人物详情页 -->
+    <van-overlay show="{{ showCharacter }}" bind:click="onClickHideCharacter">
+        <!-- <view class="wrapper">
+            <view class="block" catch:tap="noop" />
+        </view> -->
+        <view class="show-character-container">
+            <view class="show-head">
+                <van-icon name="edit" />
+                <view class="show-avatar">
+                    <image src="{{data[selectedCharacter].cover_img}}"></image>
+                </view>
+                <view class="show-name">{{data[selectedCharacter].name}}</view>
+            </view>
+            <view class="show-center">
+                —概要：
+                <view class="show-brief">{{data[selectedCharacter].brief}}</view>
+                —介绍：
+                <view class="show-desc">{{data[selectedCharacter].desc}}</view>
+            </view>
+        </view>
+    </van-overlay>
+</view>

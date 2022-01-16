@@ -1,0 +1,175 @@
+/* pages/character/characters.wxss */
+.character-container{
+    background-color: rgb(226, 222, 188);
+    height: 100vh;
+}
+.character-container>.character-head{
+    /* background-color: darkcyan; */
+    height: 40vh;
+    /* 开启bfc */
+    overflow: hidden;
+    text-align: center;
+}
+.character-container>.character-head>van-icon{
+    position: fixed;
+    right: 10px;
+    font-size: 30px;
+    top: 10px
+}
+.character-container>.character-head>.anime-name{
+    height: 15vh;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+    padding-top: 5vh;
+}
+.character-container>.character-head>.anime-cover{
+    background: rgb(170, 126, 126);
+    width: 20vh;
+    height: 20vh;
+    margin-top: 5vh;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    border-radius: 15%;
+    box-shadow: 0 0 40px 1px rgb(209, 209, 69);
+}
+.character-container>.character-head>.anime-cover>image{
+    height: 100%;
+    width: 100%;
+}
+.character-container >.character-center{
+    /* background-color: darkgoldenrod; */
+    min-height: 30vh;
+    overflow: hidden;
+}
+.character-container >.character-center>view{
+    padding: 6px;
+    border-bottom: 1px solid rgb(121, 121, 87);
+}
+.character-container >.character-center>.show-time{
+    font-size: 14px;
+}
+.character-container >.character-center>.anime-brief{
+    font-size: 16px;
+}
+.character-container >.character-center>.anime-desc{
+    font-size: 18px;
+    border: none;
+}
+.character-container >.character-foot{
+    /* background-color: darkgray; */
+    height: 30vh;
+}
+.character-container >.character-foot>.title{
+    height: 5vh;
+    line-height: 5vh;
+    font-weight: bold;
+    padding-left: 10px;
+    border-bottom: 1px solid black;
+}
+.character-container >.character-foot>.character-list{
+    background-color: rgb(224, 236, 205);
+    height: 25vh;
+    overflow: auto;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.character-container >.character-foot>.character-list>.character-item{
+    /* background-color: darkgray; */
+    height: 25vh;
+    min-width: 30vw;
+    width: 30vw;
+    /* background-color: blanchedalmond; */
+    text-align: center;
+    overflow: hidden;
+}
+.character-container >.character-foot>.character-list>.character-item>.cover-img{
+    margin-top: 1vh;
+}
+.character-container >.character-foot>.character-list>.character-item>.cover-img>image{
+    width: 20vw;
+    height: 20vw;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.character-container >.character-foot>.character-list>.character-item>.character-name{
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.character-container >.character-foot>.character-list>.character-item>.character-brief{
+    padding: 5px;
+    font-size: 12px;
+}
+.character-container >.character-foot>.character-list>.character-item>van-icon{
+    margin-top: 5vh;
+    font-size: 20vw;
+    color: rgb(50, 209, 45);
+}
+/* 人物展开页 */
+.show-character-container{
+    box-shadow: 10rpx 10rpx 20rpx 5rpx #fff;
+    border-radius: 50rpx;
+    overflow: hidden;
+    width: 600rpx;
+    height: 80%;
+    margin: 10%;
+    margin-top: 20%;
+}
+.show-character-container>.show-head{
+    background-color: rgb(213, 233, 194);
+    height: 20%;
+    position: relative;
+}
+.show-character-container>.show-head>van-icon{
+    position: absolute;
+    right: 30rpx;
+    top: 30rpx;
+}
+.show-character-container>.show-head>.show-avatar{
+    height: 200rpx;
+    width: 200rpx;
+    transform: scale(.8);
+    position: absolute;
+}
+.show-character-container>.show-head>.show-avatar>image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px black;
+}
+.show-character-container>.show-head>.show-name{
+    /* background-color: blue; */
+    width: 400rpx;
+    height: 80rpx;
+    text-align: center;
+    line-height: 80rpx;
+    font-size: 50rpx;
+    font-weight: bold;
+    position: absolute;
+    left: 200rpx;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+}
+.show-character-container>.show-center{
+    background-color: rgb(199, 212, 185);
+    min-height: 80%;
+    font-size: 25rpx;
+    padding-top: 10rpx;
+}
+.show-character-container>.show-center>.show-brief{
+    /* background-color: lawngreen; */
+    height: 200rpx;
+    padding: 20rpx;
+    font-size: 35rpx;
+    border-top: solid black 1rpx;
+}
+.show-character-container>.show-center>.show-desc{
+    /* background-color: rgb(54, 52, 185); */
+    min-height: 300rpx;
+    padding: 20rpx;
+    font-size: 30rpx;
+    border-top: solid black 1rpx;
+}
