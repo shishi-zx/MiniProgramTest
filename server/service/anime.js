@@ -81,7 +81,7 @@ class Anime{
     static async addOne(payload){
         //校验动漫名
         if (!dataUtil.hasLength(payload.name)) {
-            return respModel.error({
+            return Result.error({
                 code: 501001,
                 msg: '动漫名不能为空'
             });
