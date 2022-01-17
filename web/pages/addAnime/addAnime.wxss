@@ -1,0 +1,25 @@
+/* pages/addAnime/addAnime.wxss */
+.add-anime-container{
+    padding: 20rpx;
+    position: relative;
+    padding-top: 150rpx;
+}
+.add-anime-container .time-selected{
+    width: 500rpx;
+    border-radius: 200rpx;
+    padding: 20rpx;
+}
+.add-anime-container .item{
+    margin: 40rpx;
+    display: block;
+}
+.add-anime-container .btns{
+    margin-top: 100rpx;
+    position: absolute;
+}
+.add-anime-container .btn-1{
+    left: 200rpx;
+}
+.add-anime-container .btn-2{
+    right: 200rpx;
+}

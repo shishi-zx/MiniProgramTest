@@ -101,7 +101,7 @@ class Character{
      static async addOne(payload){
         //校验动漫juese名
         if (!dataUtil.hasLength(payload.name)) {
-            return respModel.error({
+            return Result.error({
                 code: 501001,
                 msg: 'juese名不能为空'
             });

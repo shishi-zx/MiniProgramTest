@@ -1,0 +1,31 @@
+<!--pages/addAnime/addAnime.wxml-->
+<view class="add-anime-container">
+    <van-cell-group>
+        <van-field class="item" label="动漫名字 ："  model:value="{{ name }}" placeholder="请输入动漫名" border="true" bind:change="onChange" />
+        <van-field class="item" label="动漫摘要 ："  model:value="{{ brief }}" placeholder="请输入动漫简介" border="true" bind:change="onChange" />
+        <van-field class="item" bindtap="switchShowTimer" label="上映时间 ："  value="{{ showTime }}" placeholder="点击选择时间" border="true"  readonly />
+        <van-uploader class="item" file-list="{{ fileList }}" bind:after-read="afterRead" deletable="{{ true }}" max-count="1" >
+            <van-button icon="photo" type="primary">上传封面</van-button>
+        </van-uploader>
+        <van-field type="textarea" autosize class="item" label="动漫介绍 ："  model:value="{{ desc }}" placeholder="请输入动漫介绍" border="true" bind:change="onChange" />
+
+        <van-button class="btns btn-1" round type="danger" >取消</van-button>
+        <van-button class="btns btn-2" round type="primary" >添加</van-button>
+       
+        <!-- 为时间选择器单独做弹出层 -->
+        <van-popup show="{{ showTimer }}" bind:close="switchShowTimer" round>
+            <view class="time-selected">
+                <van-datetime-picker
+                    type="date"
+                    value="{{ show_time }}"
+                    bind:input="selectTime"
+                    min-date="{{ minDate }}"
+                    max-date="{{maxDate}}"
+                    visible-item-count="3"
+                    show-toolbar="{{false}}"
+                    />
+            </view>
+        </van-popup>
+    </van-cell-group>
+
+</view>
