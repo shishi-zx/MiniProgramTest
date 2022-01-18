@@ -46,6 +46,7 @@ class Character{
 
         let totalRecords = await CharacterModel.count({
             where:{
+                pid,
                 status: 1
             }
         })
