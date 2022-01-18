@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/character/characters",
     "pages/anime/animes",
-    "pages/addAnime/addAnime"
+    "pages/addAnime/addAnime",
+    "pages/addCharacter/addCharacter"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -24,6 +25,8 @@
     "van-field": "@vant/weapp/field/index",
     "van-datetime-picker": "@vant/weapp/datetime-picker/index",
     "van-popup": "@vant/weapp/popup/index",
-    "van-uploader": "@vant/weapp/uploader/index"
+    "van-uploader": "@vant/weapp/uploader/index",
+    "van-swipe-cell": "@vant/weapp/swipe-cell/index",
+    "van-dialog": "@vant/weapp/dialog/"
   }
 }

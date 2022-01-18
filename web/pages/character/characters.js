@@ -1,4 +1,6 @@
-import { reqAllCharacters, reqAnime } from "../../api/index";
+import { reqAllCharacters, reqAnime ,reqDelCharacter} from "../../api/index";
+import Toast from '@vant/weapp/toast/toast'
+import Dialog from '@vant/weapp/dialog/dialog'
 
 // pages/character/characters.js
 Page({
@@ -9,7 +11,7 @@ Page({
     data: {
         pid:1,
         pageNum: 1,
-        pageSize: 20,
+        pageSize: 5,
         curPageSize:0,
         total:0,
         totalPages:0,
@@ -44,6 +46,24 @@ Page({
         })
         this.setData(res.data)
     },
+    //动态追加角色列表数据
+    async addToList(){
+        console.log("加载跟多");
+        let res = await reqAllCharacters({
+            pid:this.data.pid,
+            pageNum: this.data.pageNum+1,
+            pageSize: this.data.pageSize
+        })
+        let list = this.data.data.concat(res.data.data)
+        const {pageNum,pageSize,total,totalPages,curPageSize} = res.data
+        this.setData({
+            data:list,
+            pageNum,
+            pageSize,
+            total,
+            totalPages,curPageSize
+        })
+    },
     onClickHideCharacter(){
         this.setData({
             showCharacter: false
@@ -54,6 +74,47 @@ Page({
             selectedCharacter: event.target.dataset.id,
             showCharacter: true
         })
+    },
+    editAnime(){
+        wx.navigateTo({
+          url: `../addAnime/addAnime?id=${this.data.pid}`,
+        })
+    },
+    addCharacter(){
+        wx.navigateTo({
+          url: `../addCharacter/addCharacter?pid=${this.data.pid}`,
+        })
+    },
+    upCharacter(){
+        wx.redirectTo({
+            url: `../addCharacter/addCharacter?pid=${this.data.pid}&id=${this.data.data[this.data.selectedCharacter].id}`,
+        })
+    },
+    delCharacter(){
+        const { data, selectedCharacter} = this.data
+        Dialog.confirm({
+            title: data[selectedCharacter].name,
+            message: '确认删除该角色吗',
+          })
+            .then(async () => {
+              console.log("yes");
+              let res = await reqDelCharacter({id:data[selectedCharacter].id})
+              console.log(res);
+              if(res.code==200){
+                  Toast.success("删除成功")
+                  this.setData({
+                    showCharacter: false
+                  })
+                  wx.redirectTo({
+                    url: `../character/characters?id=${this.data.pid}`,
+                  })
+              }else{
+                  Toast.fail("删除失败")
+              }
+            })
+            .catch(() => {
+              console.log('no');
+            });
     },
 
     /**

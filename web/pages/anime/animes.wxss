@@ -10,6 +10,7 @@
     position: fixed;
     right: 10px;
     top: 10px;
+    z-index: 100;
 }
 .animeHeader>van-icon{
     color: rgb(40, 59, 100);
@@ -37,9 +38,8 @@
 .animeHeader .menu > view:last-child{
     border-bottom: none;
 }
-.animeCenter
 .listItem{
-    width: 100vw;
+    /* width: 100vw; */
     height: 100px;
     display: flex;
     flex-direction: row;
@@ -70,4 +70,14 @@
 .ItemBrief{
     font-size: 14px;
     padding: 4px;
+}
+.delete-btn{
+    background-color: rgb(235, 30, 115);
+    width: 100vw;
+    height: 100%;
+    font-size: 100rpx;
+    line-height: 100px;
+}
+.delete-btn>van-icon{
+    margin-left: 30rpx;
 }
