@@ -1,0 +1,21 @@
+<!--pages/addCharacter/addCharacter.wxml-->
+<view class="add-character-container">
+    <view class="center">
+        <van-cell-group>
+            <view class="avatar-group">
+                <van-uploader class="item" file-list="{{ fileList }}" bind:after-read="afterRead" deletable="{{ true }}" max-count="1">
+                    <van-icon class="avatar" name="user-circle-o" />
+                </van-uploader>
+                <van-field class="item"  model:value="{{ name }}" placeholder="请输入角色名" border="true"  />
+            </view>
+            <van-field class="item" label="角色简介 ：" model:value="{{ brief }}" placeholder="请输入角色简介" border="true"  />
+            <van-field type="textarea" autosize class="item" label="角色详情 ：" model:value="{{ desc }}" placeholder="请输入角色详情" border="true"  />
+
+            <van-button class="btns btn-1" round type="danger" bind:click="close">取消</van-button>
+            <van-button wx:if="{{type==0}}" class="btns btn-2" round type="primary" bind:click="addChararcter">添加</van-button>
+            <van-button wx:else="{{type==1}}" class="btns btn-2" round type="primary" bind:click="upCharacter">修改</van-button>
+        </van-cell-group>
+    </view>
+    <van-dialog id="van-dialog" />
+    <van-toast id="van-toast" />
+</view>

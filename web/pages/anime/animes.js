@@ -1,20 +1,24 @@
 // pages/anime/animes.js
-import { reqAllAnimes } from '../../api/index'
+import {
+    reqAllAnimes,
+    reqDelAnime
+} from '../../api/index'
 import Toast from '@vant/weapp/toast/toast'
+import Dialog from '@vant/weapp/dialog/dialog'
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        pageNum:1,
-        pageSize:10,
-        curPageSize:0,
-        total:0,
-        totalPages:0,
-        sortby:'name',
+        pageNum: 1,
+        pageSize: 20,
+        curPageSize: 0,
+        total: 0,
+        totalPages: 0,
+        sortby: 'name',
         orderby: 'desc',
-        data:[],
+        data: [],
         showSetting: false
     },
 
@@ -25,22 +29,28 @@ Page({
         this.reqData()
     },
     //请求动漫列表数据
-    reqData: async function(pageNum){
+    reqData: async function (pageNum) {
         let res = await reqAllAnimes({
             pageNum,
             pageSize: this.data.pageSize,
-            sortby:this.data.sortby,
+            sortby: this.data.sortby,
             orderby: this.data.orderby
         })
-        if(res.code!==200){
+        if (res.code !== 200) {
             return Toast.fail(res.msg);
         }
         let data = res.data
         this.addList(data)
     },
     //添加动漫数据（追加）
-    addList(data){
-        const {pageNum,pageSize,curPageSize,total,totalPages} = data
+    addList(data) {
+        const {
+            pageNum,
+            pageSize,
+            curPageSize,
+            total,
+            totalPages
+        } = data
         let list = data.data
         list = this.data.data.concat(list)
         this.setData({
@@ -52,36 +62,71 @@ Page({
             data: list
         })
     },
+    //删除一个动漫
+    async deleteOne(event) {
+        Dialog.confirm({
+            title: '注意！',
+            message: '是否确定删除',
+        })
+            .then(async () => {
+                // on confirm
+                let res = await reqDelAnime({
+                    id: event.target.dataset.id
+                })
+                if (res.code == 200) {
+                    Toast.success('删除成功')
+                    let index = -1;
+                    this.data.data.find((e, i) => {
+                        if (e.id == event.target.dataset.id) {
+                            index = i
+                        }
+                    })
+                    this.data.data.splice(index, 1)
+                    let list = this.data.data
+                    this.setData({
+                        data: list
+                    })
+                } else {
+                    Toast.fail('删除失败，请稍后重试')
+                }
+            })
+            .catch(() => {
+                // on cancel
+            });
+
+    },
     //切换排序方式
-    switchOrderToLow(){
+    switchOrderToLow() {
         this.setData({
             orderby: 'desc',
-            data:[]
+            data: []
         })
         this.reqData(1)
     },
-    switchOrderToHigh(){
+    switchOrderToHigh() {
         this.setData({
             orderby: 'asc',
-            data:[]
+            data: []
         })
         this.reqData(1)
     },
     //切换设置菜单的显示
     switchShow() {
-        this.setData({ show: !this.data.show });
+        this.setData({
+            show: !this.data.show
+        });
     },
     //进入动漫详情页
-    open(event){
+    open(event) {
         let id = event.target.dataset.id
         id && wx.navigateTo({
             url: `../character/characters?id=${id}`
-          })
+        })
     },
     //新建动漫，跳转页面
-    addAnime(){
-        wx.redirectTo({
-          url: '../addAnime/addAnime'
+    addAnime() {
+        wx.navigateTo({
+            url: '../addAnime/addAnime'
         })
     },
 
@@ -95,8 +140,8 @@ Page({
     /**
      * 生命周期函数--监听页面显示
      */
-    onShow: function () {
-
+    onShow: function (event) {
+        console.log(getCurrentPages());
     },
 
     /**
@@ -124,10 +169,10 @@ Page({
      * 页面上拉触底事件的处理函数
      */
     onReachBottom: function () {
-        if(this.data.pageNum+1>this.data.totalPages){
+        if (this.data.pageNum + 1 > this.data.totalPages) {
             return Toast("已经到底了哦")
         }
-        this.reqData(this.data.pageNum+1)
+        this.reqData(this.data.pageNum + 1)
     },
 
     /**

@@ -1,5 +1,6 @@
 <!--pages/animes/animes.wxml-->
 <view class="animeContainer">
+    <van-dialog id="van-dialog" />
     <view class="animeHeader">
         <van-icon name="setting" size="40px" bind:click="switchShow" />
         <van-overlay show="{{ show }}" bind:click="switchShow" duration="0">
@@ -13,7 +14,19 @@
         </van-overlay>
     </view>
     <view class="animeCenter">
-        <view class="listItem" wx:for="{{data}}" wx:for-itme="item" wx:key="id" bindtap="open">
+        <van-swipe-cell right-width="{{ 80 }}" wx:for="{{data}}" wx:for-itme="item" wx:key="id" >
+           <view class="listItem" bindtap="open">
+                <view class="listItemLeft" data-id="{{item.id}}">
+                    <image src="{{item.cover_img}}" data-id="{{item.id}}" />
+                </view>
+                <view class="listItemright" data-id="{{item.id}}">
+                    <view class="ItemName" data-id="{{item.id}}">{{item.name}}</view>
+                    <view class="ItemBrief" data-id="{{item.id}}">{{item.brief}}</view>
+                </view>
+           </view>
+            <view slot="right" class="delete-btn"><van-icon name="delete-o" bindtap="deleteOne" data-id="{{item.id}}" /></view>
+        </van-swipe-cell>
+        <!-- <view class="listItem" wx:for="{{data}}" wx:for-itme="item" wx:key="id" bindtap="open">
             <view class="listItemLeft" data-id="{{item.id}}">
                 <image src="{{item.cover_img}}" data-id="{{item.id}}" />
             </view>
@@ -21,7 +34,7 @@
                 <view class="ItemName" data-id="{{item.id}}">{{item.name}}</view>
                 <view class="ItemBrief" data-id="{{item.id}}">{{item.brief}}</view>
             </view>
-        </view>
+        </view> -->
         <view wx:if="{{data.length==0}}">服务器未打开或者请检查网络链接</view>
         <van-toast id="van-toast" />
     </view>

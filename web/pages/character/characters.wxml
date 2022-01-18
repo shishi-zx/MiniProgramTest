@@ -1,7 +1,7 @@
 <!--pages/character/characters.wxml-->
 <view class="character-container">
     <view class="character-head">
-        <van-icon name="edit" />
+        <van-icon name="edit"  bindtap="editAnime"  />
         <view class="anime-cover">
             <image src="{{Anime.cover_img}}"></image>
         </view>
@@ -16,10 +16,11 @@
             module.exports.format = format
         </wxs>
         <view class="show-time">上映时间：{{m1.format(Anime.show_time)}}</view>
-        <view class="anime-brief">草帽一伙</view>
-        <view class="anime-desc">草帽一伙的探险故事</view>
+        <view class="anime-brief">{{Anime.brief}}</view>
+        <view class="anime-desc">{{Anime.desc}}</view>
     </view>
     <view class="character-foot">
+        <view bindtap="addCharacter" class="add-character"><van-icon name="add-o" /> 添加</view>
         <view class="title">角色列表</view>
         <view class="character-list">
             <view class="character-item" wx:for="{{data}}" wx:key="*this">
@@ -29,7 +30,7 @@
                 <view class="character-name">{{item.name}}</view>
                 <view class="character-brief">{{item.brief}}</view>
             </view>
-            <view wx:if="{{pageNum<totalPages}}" class="character-item">
+            <view wx:if="{{pageNum<totalPages}}" class="character-item" bindtap="addToList">
                 <van-icon name="add-o" />
                 <view>加载更多</view>
             </view>
@@ -42,7 +43,7 @@
         </view> -->
         <view class="show-character-container">
             <view class="show-head">
-                <van-icon name="edit" />
+                <van-icon name="edit" bindtap="upCharacter" />
                 <view class="show-avatar">
                     <image src="{{data[selectedCharacter].cover_img}}"></image>
                 </view>
@@ -53,7 +54,11 @@
                 <view class="show-brief">{{data[selectedCharacter].brief}}</view>
                 —介绍：
                 <view class="show-desc">{{data[selectedCharacter].desc}}</view>
+                
             </view>
+            <view class="del-btn" bindtap="delCharacter"><van-icon name="delete-o" /></view>
         </view>
     </van-overlay>
+    <van-toast id="van-toast" />
+    <van-dialog id="van-dialog" />
 </view>
